@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-3(1y%$wck(e!l288d4tq0k$vhq9j5vxf!z3%x)#cju46qw&7$^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangoproject-2-dexe.onrender.com', 'localhost', '127.0.0.1']
+
+
 
 
 # Application definition
@@ -126,6 +128,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'plant_list'
 LOGOUT_REDIRECT_URL = 'plant_list'
-ALLOWED_HOSTS = ['shop.onrender.com']
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

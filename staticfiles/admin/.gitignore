@@ -1,0 +1,29 @@
+# Ignore Python bytecode and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore Django static files
+staticfiles/
+
+# Ignore media files
+media/
+
+# Ignore SQLite database
+db.sqlite3
+
+# Ignore Django migrations
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+staticfiles/

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    /* Zoom effect on image hover */
+    .card-img-top {
+        transition: transform 0.3s ease;  /* Smooth zoom transition */
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.1);  /* Scale up the image slightly on hover */
+    }
+</style>
+<div class="container mt-4">
+    <h1 class="text-center">Pots & Planters</h1>
+    <a href="{% url 'add_pot' %}" class="btn btn-success mb-4">Add New Pot</a>
+    <div class="row">
+        {% for pot in pots %}
+        <div class="col-md-4 mb-4">
+            
+            <div class="card">
+                {% if pot.image %}
+                    <img src="{{ pot.image.url }}" class="card-img-top" alt="{{ pot.name }}" style="height: 200px;">
+                {% else %}
+                    <img src="/static/default_image.jpg" class="card-img-top" alt="No image available" style="height: 200px;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ pot.name }}</h5>
+                    <p class="card-text">{{ pot.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ pot.price }}</p>
+                    <p><strong>Quantity:</strong> {{ pot.quantity }}</p>
+                    <a href="{% url 'edit_pot' pot.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_pot' pot.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

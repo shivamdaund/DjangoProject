@@ -75,3 +75,40 @@ def plant_delete(request, pk):
     return render(request, 'plant_confirm_delete.html', {'plant': plant, 'form': form})
 
 
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Pot
+from .forms import PotForm
+
+def pots_list(request):
+    pots = Pot.objects.all()
+    for pot in pots:
+        if not pot.image:
+            pot.image = 'path/to/default_image.jpg'  # Optional: Provide a default image if none exists
+    return render(request, 'pots_list.html', {'pots': pots})
+    
+
+def add_pot(request):
+    if request.method == 'POST':
+        form = PotForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('pots_list')
+    else:
+        form = PotForm()
+    return render(request, 'pot_form.html', {'form': form})
+
+def edit_pot(request, pk):
+    pot = get_object_or_404(Pot, pk=pk)
+    if request.method == 'POST':
+        form = PotForm(request.POST, request.FILES, instance=pot)
+        if form.is_valid():
+            form.save()
+            return redirect('pots_list')
+    else:
+        form = PotForm(instance=pot)
+    return render(request, 'pot_form.html', {'form': form})
+
+def delete_pot(request, pk):
+    pot = get_object_or_404(Pot, pk=pk)
+    pot.delete()
+    return redirect('pots_list')

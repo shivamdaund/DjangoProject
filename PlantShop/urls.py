@@ -17,15 +17,24 @@ Including another URLconf
 # PlantShop/urls.py
 
 from django.contrib import admin
+from shop.views import plant_list  # Import the plants_list view
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shop.urls')),  # Include URLs from the shop app
+    path('', include('shop.urls')),  # Include your app's URLs here
+    path('home', plant_list, name='home'),  # Root URL redirects to plants_list
+    path('pots/', include('shop.urls')),  # Include your app's URLs
 ]
+
+
 
 # Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+

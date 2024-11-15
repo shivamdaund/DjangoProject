@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ plant.name }}</h1>
+<img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="img-fluid">
+<p>{{ plant.description }}</p>
+<p>Price: ${{ plant.price }}</p>
+<p>Available: {{ plant.quantity }}</p>
+<a href="{% url 'plant_update' plant.pk %}" class="btn btn-info">Edit</a>
+<a href="{% url 'plant_delete' plant.pk %}" class="btn btn-danger">Delete</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- shop/templates/shop/plant_confirm_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Delete Plant Quantity</h2>
+    <p>Enter the quantity you want to delete for "{{ plant.name }}". Available quantity: {{ plant.quantity }}</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'plant_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
